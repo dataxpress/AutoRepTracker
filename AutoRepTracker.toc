@@ -1,0 +1,6 @@
+## Interface: 11305
+## Title: AutoRepTracker
+## Author: Inimical-Atiesh
+## Version: 0.1
+## Notes: Automatically changes tracked reputation based on player zone.
+main.lua
