@@ -13,6 +13,7 @@ reps = {
         ["Molten Core"]="Hydraxian Waterlords",
         ["Winterspring"]="Timbermaw Hold",
         ["Felwood"]="Timbermaw Hold",
+        ["Zul Gurub"]="Zandalar Tribe",
     }
 
 local ZoneChanged_EventFrame = CreateFrame("Frame")
