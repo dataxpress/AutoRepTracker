@@ -1,19 +1,30 @@
-reps = {
-        ["Warsong Gulch"]="Silverwing Sentinels",
-        ["Arathi Basin"]="The League of Arathor",
-        ["Alterac Valley"]="Stormpike Guard",
-        ["Western Plaguelands"]="Argent Dawn",
-        ["Eastern Plaguelands"]="Argent Dawn",
-        ["Stratholme"]="Argent Dawn",
-        ["Scholomance"]="Argent Dawn",
-        ["Stormwind City"]="Stormwind",
-        ["Ironforge"]="Ironforge",
-        ["Darnassus"]="Darnassus",
-        ["Silithus"]="Cenarion Hold",
-        ["Molten Core"]="Hydraxian Waterlords",
-        ["Winterspring"]="Timbermaw Hold",
-        ["Felwood"]="Timbermaw Hold",
-        ["Zul'Gurub"]="Zandalar Tribe",
+reps = {["Neutral"] = {
+            ["Silithus"]="Cenarion Circle",
+            ["Molten Core"]="Hydraxian Waterlords",
+            ["Winterspring"]="Timbermaw Hold",
+            ["Felwood"]="Timbermaw Hold",
+            ["Zul'Gurub"]="Zandalar Tribe",
+            ["Western Plaguelands"]="Argent Dawn",
+            ["Eastern Plaguelands"]="Argent Dawn",
+            ["Stratholme"]="Argent Dawn",
+            ["Scholomance"]="Argent Dawn",    
+        },
+        ["Alliance"] = { 
+            ["Warsong Gulch"]="Silverwing Sentinels",
+            ["Arathi Basin"]="The League of Arathor",
+            ["Alterac Valley"]="Stormpike Guard",
+            ["Stormwind City"]="Stormwind",
+            ["Ironforge"]="Ironforge",
+            ["Darnassus"]="Darnassus",    
+        },
+        ["Horde"] = {
+            ["Warsong Gulch"]="Warsong Outriders",
+            ["Arathi Basin"]="The Defilers",
+            ["Alterac Valley"] = "Frostwolf Clan",
+            ["Orgrimmar"]="Orgrimmar",
+            ["Thunder Bluff"]="Thunder Bluff",
+            ["Undercity"]="Undercity",
+        },
     }
 
 local ZoneChanged_EventFrame = CreateFrame("Frame")
@@ -24,8 +35,12 @@ ZoneChanged_EventFrame:SetScript("OnEvent",
     end)
 
 function updateTrackedZone()
+    englishFaction, localizedFaction = UnitFactionGroup("player")
     zone = GetRealZoneText()
-    rep = reps[zone]
+    rep = reps["Neutral"][zone]
+    if rep == null then
+        rep = reps[englishFaction][zone]
+    end
     if rep ~= null then
         local factionIndex = 1
         local lastFactionName
